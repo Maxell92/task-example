@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My tasks{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>New task</h1>
+    <p><a href="{{ path('index') }}">Back</a></p>
+
+    {{ form(form) }}
+</div>
+{% endblock %}

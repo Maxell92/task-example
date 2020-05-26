@@ -3,48 +3,58 @@
 namespace App\Repository;
 
 use App\Entity\Task;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
-/**
- * @method Task|null find($id, $lockMode = null, $lockVersion = null)
- * @method Task|null findOneBy(array $criteria, array $orderBy = null)
- * @method Task[]    findAll()
- * @method Task[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class TaskRepository extends ServiceEntityRepository
+final class TaskRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var EntityRepository
+     */
+    private $entityRepository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Task::class);
+        $this->entityRepository = $entityManager->getRepository(Task::class);
     }
 
-    // /**
-    //  * @return Task[] Returns an array of Task objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Task[]
+     */
+    public function getTasks(bool $today): array
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $queryBuilder = $this->getBaseQueryBuilder()
+            ->andWhere('task.isClosed = FALSE');
 
-    /*
-    public function findOneBySomeField($value): ?Task
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
+        if ($today) {
+            $date = (new DateTime())->setTime(23, 59, 59);
+            $queryBuilder->andWhere('task.assignedDate <= :date')
+                ->setParameter('date', $date);
+        }
+
+        return $queryBuilder
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
+
+    /**
+     * @return Task[]
+     */
+    public function getClosedTasks(): array
+    {
+        $queryBuilder = $this->getBaseQueryBuilder()
+            ->andWhere('task.isClosed = TRUE');
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function getBaseQueryBuilder(): QueryBuilder
+    {
+        return $this->entityRepository->createQueryBuilder('task')
+            ->orderBy('task.assignedDate', 'ASC');
+    }
 }

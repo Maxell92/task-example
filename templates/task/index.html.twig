@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My tasks{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello! ✅</h1>
+
+    <a href="{{ path('task_new') }}">New task</a>
+
+    <h2>Your tasks:</h2>
+    <p>
+        <a href="{{ path('index') }}">All tasks</a> |
+        <a href="{{ path('index', {today: true}) }}">Tasks for today</a> |
+        <a href="{{ path('task_closed') }}">Closed task</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td class="alert {% if task.isOverdue %}alert-danger{% elseif task.closed %}alert-success{% endif %}">
+                {{ task.assignedDate|date("Y-m-d") }}
+            </td>
+            <td>{{ task.description }}</td>
+            <td>
+                {% if task.closed %}
+                    <a href="{{ path('task_open', {id: task.id}) }}">Open</a>
+                {% else %}
+                    <a href="{{ path('task_close', {id: task.id}) }}">Close</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
