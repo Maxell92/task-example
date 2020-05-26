@@ -23,7 +23,7 @@ final class TaskFormValue
     private $description;
 
     /**
-	 * @var DateTimeInterface|null
+	 * @var DateTimeInterface
      *
      * @Assert\NotBlank
      * @Assert\Type("DateTimeInterface")

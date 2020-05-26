@@ -1,0 +1,12 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    checkGenericClassInNonGenericObjectType: false
+    excludes_analyse:
+        - src/Migrations/*
+        - tests/bootstrap.php
+    autoload_files:
+        - vendor/autoload.php
+        - bin/.phpunit/phpunit-7.5-0/vendor/autoload.php
