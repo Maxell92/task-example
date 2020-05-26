@@ -24,29 +24,29 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255)
-	 *
-	 * @var string
+     *
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-	 *
-	 * @var string|null
+     *
+     * @var string|null
      */
     private $description;
 
     /**
      * @ORM\Column(type="date")
-	 *
-	 * @var DateTimeInterface
+     *
+     * @var DateTimeInterface
      */
     private $assignedDate;
 
     /**
      * @ORM\Column(type="boolean")
-	 *
-	 * @var bool
+     *
+     * @var bool
      */
     private $isClosed = false;
 

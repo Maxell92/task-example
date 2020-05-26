@@ -22,7 +22,11 @@ final class SaveTask
 
     public function new(TaskFormValue $taskFormValue): void
     {
-        $task = new Task($taskFormValue->getTitle(), $taskFormValue->getAssignedDate(), $taskFormValue->getDescription());
+        $task = new Task(
+            $taskFormValue->getTitle(),
+            $taskFormValue->getAssignedDate(),
+            $taskFormValue->getDescription()
+        );
 
         $this->entityManager->persist($task);
         $this->entityManager->flush();

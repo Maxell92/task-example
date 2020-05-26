@@ -18,9 +18,9 @@ final class TaskTest extends TestCase
 
         $task = new Task($title, $date, $description);
 
-        $this->assertEquals($title, $task->getTitle());
-        $this->assertEquals($date, $task->getAssignedDate());
-        $this->assertEquals($description, $task->getDescription());
+        $this->assertSame($title, $task->getTitle());
+        $this->assertSame($date, $task->getAssignedDate());
+        $this->assertSame($description, $task->getDescription());
         $this->assertFalse($task->isClosed());
         $this->assertFalse($task->isOverdue());
     }

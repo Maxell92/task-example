@@ -40,7 +40,7 @@ final class TaskController extends AbstractController
     }
 
     public function index(bool $today = false): Response
-	{
+    {
         return $this->render('task/index.html.twig', [
             'tasks' => $this->getTask->getTasks($today),
         ]);
@@ -50,7 +50,7 @@ final class TaskController extends AbstractController
      * @Route("/task-closed", name="task_closed")
      */
     public function task_closed(): Response
-	{
+    {
         return $this->render('task/index.html.twig', [
             'tasks' => $this->getTask->getClosedTasks(),
         ]);

@@ -17,23 +17,23 @@ final class TaskControllerTest extends WebTestCase
             'task[title]' => 'My own title',
         ]);
 
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
 
         $crawler = $client->request('GET', '/');
 
         $count = $crawler
             ->filter('td:contains("My own title")')->count();
 
-        $this->assertEquals(1, $count);
+        $this->assertSame(1, $count);
 
         $client->request('GET', '/close/1');
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
 
         $crawler = $client->request('GET', '/');
 
         $count = $crawler
             ->filter('td:contains("My own title")')->count();
 
-        $this->assertEquals(0, $count);
+        $this->assertSame(0, $count);
     }
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Model\Task;
 
 use App\Entity\Task;
-use App\FormValue\TaskFormValue;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class CloseTask

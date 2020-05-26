@@ -27,8 +27,8 @@ final class SaveTaskTest extends TestCase
         $entityManager = $this->createMock(EntityManagerInterface::class);
         $entityManager->expects($this->once())
             ->method('persist')
-            ->with($this->callback(function(Task $task) use ($title) {
-                    return $task->getTitle() === $title;
+            ->with($this->callback(function (Task $task) use ($title) {
+                return $task->getTitle() === $title;
             }));
         $entityManager->expects($this->once())
             ->method('flush')

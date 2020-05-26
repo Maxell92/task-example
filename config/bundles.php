@@ -13,4 +13,8 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['test' => true],
+    Symplify\ConsoleColorDiff\ConsoleColorDiffBundle::class => ['dev' => true, 'test' => true],
+    Symplify\ParameterNameGuard\ParameterNameGuardBundle::class => ['dev' => true, 'test' => true],
+    Symplify\CodingStandard\SymplifyCodingStandardBundle::class => ['dev' => true, 'test' => true],
+    Symplify\EasyCodingStandard\EasyCodingStandardBundle::class => ['dev' => true, 'test' => true],
 ];

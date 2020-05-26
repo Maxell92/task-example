@@ -11,19 +11,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class TaskFormValue
 {
     /**
-	 * @var string
+     * @var string
      *
      * @Assert\NotBlank
      */
     private $title = '';
 
     /**
-	 * @var string|null
+     * @var string|null
      */
     private $description;
 
     /**
-	 * @var DateTimeInterface
+     * @var DateTimeInterface
      *
      * @Assert\NotBlank
      * @Assert\Type("DateTimeInterface")
